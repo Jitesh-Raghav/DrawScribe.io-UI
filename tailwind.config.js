@@ -5,8 +5,23 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'SuperShiny': ['SuperShiny'],
+        'Mario': ['Mario'],
+      },
+      keyframes: {
+        // Defines the breathing animation keyframes
+        breathing: {
+          '0%, 100%': { transform: 'scale(1)' }, // Start and end at normal size
+          '50%': { transform: 'scale(1.05)' },   // Slightly larger at the midpoint
+        },
+      },
+      animation: {
+        // Assigns the breathing animation to a class
+        breathing: 'breathing 3s ease-in-out infinite',
+      },
+    },
   },
   plugins: [],
 }
-
