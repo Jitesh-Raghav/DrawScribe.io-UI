@@ -61,7 +61,7 @@ const Play = () => {
             avatar: adventurerSeeds[currentIndex],
         };
         console.log(formData); // Log form data
-        navigate('/game'); // Redirect to start game page
+        navigate('/game', { state: { playerName } }); 
     };
 
     return (
