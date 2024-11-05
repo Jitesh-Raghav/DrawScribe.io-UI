@@ -6,8 +6,8 @@ const Game = () => {
   const playerName = location.state?.playerName; // Get playerName from state
 
   return (
-    <div>
-      <h1 className='text-pink-700 text-7xl font-Mario'>Welcome, {playerName ? playerName : 'Player'}!</h1> {/* Display player name */}
+    <div className="bg-cover bg-center bg-no-repeat h-screen w-full flex flex-col justify-center items-center" style={{ backgroundImage: `url('/bg.png')` }}>
+      <h1 className='text-green-600 bg-gray-300 mx-3 text-7xl font-Mario'>Welcome, {playerName ? playerName : 'Player'}!</h1> {/* Display player name */}
     </div>
   );
 };
