@@ -24,7 +24,7 @@ const Landing = () => {
   <span className="text-cyan-500 text-outline">o</span>
 </h1>
 
-        <button onClick={()=>navigate('/play')} className='mt-8 px-4 py-2 text-xl font-Mario border border-white text-white bg-transparent font-bold rounded-xl hover:bg-pink-600 transition-all duration-100 delay-15 shadow-sm shadow-white'>Play</button>
+        <button onClick={()=>navigate('/play')} className='mt-8 px-4 py-2 text-xl font-Mario border border-white text-white bg-transparent font-bold rounded-xl hover:bg-pink-600 transition-all duration-100 delay-15 shadow-sm shadow-white'>Start</button>
        </div>
     </div>
   
