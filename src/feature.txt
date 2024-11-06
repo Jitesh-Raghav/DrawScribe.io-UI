@@ -1,4 +1,5 @@
-1. Add sounds
+1. Add sounds, add animation between routing pages
 2. Reveal words
 3. Dynamic words everytime, guessing wale
 4. fill color feature in shapes
+5. Make landing page similar to Distraint, add music of it.

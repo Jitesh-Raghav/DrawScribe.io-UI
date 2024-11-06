@@ -1,93 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { adventurer } from '@dicebear/collection';
-import { createAvatar } from '@dicebear/core';
-import { avataaarsNeutral } from '@dicebear/collection';
-import { dylan } from '@dicebear/collection';
+import React, { useState } from 'react';
 
-const Play = () => {
-  const navigate = useNavigate();
-
-  const dylanSeeds = [
-    'hero1',
-    'hero2',
-    'hero3',
-    'hero4',
-    'hero5',
-    'hero6',
-    'hero7',
-    'hero8',
-    'hero9',
-    'hero10',
-    'hero11',
-    'hero12',
-    'hero13',
-    'hero14',
-    'hero15',
-    'hero16',
-    'hero17',
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [avatarUri, setAvatarUri] = useState('');
-  const [playerName, setPlayerName] = useState('');
+const CreateRoom = () => {
+  const [numPlayers, setNumPlayers] = useState(2);
   const [language, setLanguage] = useState('English');
+  const [drawTime, setDrawTime] = useState(60);
+  const [numRounds, setNumRounds] = useState(1);
+  const [gameMode, setGameMode] = useState('Classic');
+  const [wordCount, setWordCount] = useState(5);
+  const [numHints, setNumHints] = useState(1);
+  const [customWord, setCustomWord] = useState('');
+  const [customWords, setCustomWords] = useState([]);
 
-  const generateAvatarDataUri = (seed) => {
-    const avatar = createAvatar(dylan, { seed });
-    return avatar.toDataUri();
+  const handleAddCustomWord = () => {
+    if (customWord.trim() && customWords.length < 10) {
+      setCustomWords([...customWords, customWord.trim()]);
+      setCustomWord('');
+    }
   };
 
-  useEffect(() => {
-    const uri = generateAvatarDataUri(dylanSeeds[currentIndex]);
-    setAvatarUri(uri);
-  }, [currentIndex]);
-
-  const handlePrevAvatar = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? dylanSeeds.length - 1 : prevIndex - 1));
-  };
-
-  const handleNextAvatar = () => {
-    setCurrentIndex((prevIndex) => (prevIndex ===dylanSeeds.length - 1 ? 0 : prevIndex + 1));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = {
-      playerName,
+  const handleStartGame = () => {
+    const roomSettings = {
+      numPlayers,
       language,
-      avatar: dylanSeeds[currentIndex],
+      drawTime,
+      numRounds,
+      gameMode,
+      wordCount,
+      numHints,
+      customWords,
     };
-    console.log(formData);
-    navigate('/game', { state: { playerName } });
+    console.log('Game settings:', roomSettings);
+    // Navigate to the game page or send settings to backend
+  };
+
+  const handleInvite = () => {
+    alert('Invite link copied to clipboard!');
   };
 
   return (
-    <div className="bg-cover bg-center bg-no-repeat h-screen w-full flex flex-col justify-center items-center p-4 md:p-0" style={{ backgroundImage: `url('/bg.png')` }}>
-      <h1 className="text-yellow-300 bg-red-600 px-3 font-Mario text-2xl md:text-3xl mb-6 font-bold text-center">Game Setup</h1>
-      
-      <div className="w-full max-w-md md:max-w-lg bg-gray-100 p-6 md:p-8 rounded-lg shadow-2xl flex flex-col items-center mx-2 sm:mx-6 md:mx-auto">
-        <form className="w-full flex flex-col items-center text-gray-800" onSubmit={handleSubmit}>
-          
-          {/* Player Name Input */}
-          <div className="mb-4 w-full">
-            <label className="block text-md md:text-lg font-semibold mb-2">Player Name</label>
+    <div className="bg-cover bg-center bg-no-repeat h-screen w-full flex flex-col items-center p-4 md:p-0" style={{ backgroundImage: `url('/bg.png')` }}>
+      <h1 className="text-yellow-300 bg-red-600 px-3 font-Mario text-2xl md:text-3xl mb-6 font-bold text-center">Create Room</h1>
+
+      <div className="w-full max-w-2xl bg-gray-900 opacity-90 p-8 rounded-lg shadow-2xl flex flex-col items-center mx-2 md:mx-auto">
+        <form className="w-full flex flex-col items-center text-gray-100 space-y-4">
+
+          {/* Number of Players */}
+          <div className="flex w-full items-center">
+            <label className="w-1/2 text-md md:text-lg font-semibold mr-4">Number of Players</label>
             <input
-              type="text"
-              className="w-full p-2 md:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter player name"
-              value={playerName}
-              onChange={(e) => setPlayerName(e.target.value)}
+              type="number"
+              value={numPlayers}
+              onChange={(e) => setNumPlayers(e.target.value)}
+              min="2"
+              max="10"
+              className="flex-1 p-2 border border-gray-300 rounded-lg text-gray-900"
             />
           </div>
 
-          {/* Language Selector */}
-          <div className="mb-4 w-full">
-            <label className="block text-md md:text-lg font-semibold mb-2">Select Language</label>
+          {/* Language */}
+          <div className="flex w-full items-center">
+            <label className="w-1/2 text-md md:text-lg font-semibold mr-4">Language</label>
             <select
-              className="w-full p-2 md:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
+              className="flex-1 p-2 border border-gray-300 rounded-lg text-gray-900"
             >
               <option>English</option>
               <option>Spanish</option>
@@ -97,45 +73,104 @@ const Play = () => {
             </select>
           </div>
 
-          {/* Player Avatar */}
-          <div className="mb-6 flex flex-col items-center">
-            <label className="block text-md md:text-lg font-semibold mb-2">Player Avatar</label>
-            <div className="flex items-center">
-              <button
-                type="button"
-                onClick={handlePrevAvatar}
-                className="mx-2 p-2 bg-gray-300 rounded-full hover:bg-gray-400 transition duration-200"
-              >
-                &lt;
-              </button>
-              <img
-                src={avatarUri}
-                alt="Player Avatar"
-                className="w-24 h-24 md:w-32 md:h-32 rounded-full mb-4 border-2 border-gray-300"
-              />
-              <button
-                type="button"
-                onClick={handleNextAvatar}
-                className="mx-2 p-2 bg-gray-300 rounded-full hover:bg-gray-400 transition duration-200"
-              >
-                &gt;
-              </button>
+          {/* Draw Time */}
+          <div className="flex w-full items-center">
+            <label className="w-1/2 text-md md:text-lg font-semibold mr-4">Draw Time (secs)</label>
+            <input
+              type="number"
+              value={drawTime}
+              onChange={(e) => setDrawTime(e.target.value)}
+              min="10"
+              max="180"
+              className="flex-1 p-2 border border-gray-300 rounded-lg text-gray-900"
+            />
+          </div>
+
+          {/* Number of Rounds */}
+          <div className="flex w-full items-center">
+            <label className="w-1/2 text-md md:text-lg font-semibold mr-4">Number of Rounds</label>
+            <input
+              type="number"
+              value={numRounds}
+              onChange={(e) => setNumRounds(e.target.value)}
+              min="1"
+              max="10"
+              className="flex-1 p-2 border border-gray-300 rounded-lg text-gray-900"
+            />
+          </div>
+
+          {/* Game Mode */}
+          <div className="flex w-full items-center">
+            <label className="w-1/2 text-md md:text-lg font-semibold mr-4">Game Mode</label>
+            <select
+              value={gameMode}
+              onChange={(e) => setGameMode(e.target.value)}
+              className="flex-1 p-2 border border-gray-300 rounded-lg text-gray-900"
+            >
+              <option>Classic</option>
+              <option>Timed</option>
+              <option>Endless</option>
+            </select>
+          </div>
+
+          {/* Word Count */}
+          <div className="flex w-full items-center">
+            <label className="w-1/2 text-md md:text-lg font-semibold mr-4">Word Count</label>
+            <input
+              type="number"
+              value={wordCount}
+              onChange={(e) => setWordCount(e.target.value)}
+              min="1"
+              max="10"
+              className="flex-1 p-2 border border-gray-300 rounded-lg text-gray-900"
+            />
+          </div>
+
+          {/* Number of Hints */}
+          <div className="flex w-full items-center">
+            <label className="w-1/2 text-md md:text-lg font-semibold mr-4">Number of Hints</label>
+            <input
+              type="number"
+              value={numHints}
+              onChange={(e) => setNumHints(e.target.value)}
+              min="0"
+              max="3"
+              className="flex-1 p-2 border border-gray-300 rounded-lg text-gray-900"
+            />
+          </div>
+
+          {/* Custom Words Input */}
+          <div className="w-full">
+            <label className="text-md md:text-lg font-semibold mb-2 block">Custom Words</label>
+            <input
+              type="text"
+              value={customWord}
+              onChange={(e) => setCustomWord(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddCustomWord())}
+              placeholder="Enter custom words"
+              className="w-full p-2 border border-gray-300 rounded-lg mb-4 text-gray-900 placeholder:text-gray-700"
+            />
+            <div className="flex flex-wrap gap-2">
+              {customWords.slice(0, 10).map((word, index) => (
+                <span key={index} className="bg-gray-200 px-3 py-1 rounded-lg text-sm text-gray-900">{word}</span>
+              ))}
             </div>
           </div>
 
-          {/* Start and Private Game Buttons */}
+          {/* Start and Invite Buttons */}
           <button
-            type="submit"
-            className="w-full py-2 md:py-3 mb-4 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition duration-200 text-sm md:text-base"
+            type="button"
+            onClick={handleStartGame}
+            className="w-full py-2 mt-6 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition duration-200"
           >
-            Play!
+            Start Game
           </button>
           <button
             type="button"
-            onClick={() => navigate('/create-private')}
-            className="w-full py-2 md:py-3 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition duration-200 text-sm md:text-base"
+            onClick={handleInvite}
+            className="w-full py-2 mt-2 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition duration-200"
           >
-            Create Private Room
+            Invite
           </button>
         </form>
       </div>
@@ -143,4 +178,4 @@ const Play = () => {
   );
 };
 
-export default Play;
+export default CreateRoom;
