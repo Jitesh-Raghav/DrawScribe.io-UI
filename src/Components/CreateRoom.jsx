@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AddLinkIcon from '@mui/icons-material/AddLink';
+import { useNavigate } from 'react-router-dom';
 
 const CreateRoom = () => {
   const [numPlayers, setNumPlayers] = useState(2);
@@ -11,7 +12,7 @@ const CreateRoom = () => {
   const [numHints, setNumHints] = useState(1);
   const [customWord, setCustomWord] = useState('');
   const [customWords, setCustomWords] = useState([]);
-
+  const navigate = useNavigate();
   const handleAddCustomWord = () => {
     if (customWord.trim() && customWords.length < 10) {
       setCustomWords([...customWords, customWord.trim()]);
@@ -34,6 +35,7 @@ const CreateRoom = () => {
       numHints,
       customWords,
     };
+    navigate('/game');
     console.log('Game settings:', roomSettings);
   };
 
