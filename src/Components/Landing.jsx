@@ -7,34 +7,41 @@ const Landing = () => {
 
   return (
     <div
-      className="bg-cover bg-center bg-no-repeat h-screen max-w-full flex justify-center"
+      className="bg-cover bg-center bg-no-repeat h-screen w-full flex justify-center"
       style={{ backgroundImage: `url('/bg.png')` }}
     >
       <div
         className="w-full flex flex-col justify-center items-center px-4 md:px-8"
         style={{ background: 'linear-gradient(to bottom, transparent, black)', opacity: 1 }}
       >
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl font-bold font-Mario flex space-x-1 animate-breathing text-center">
-          <span className="text-red-500 text-outline">D</span>
-          <span className="text-orange-500 text-outline">r</span>
-          <span className="text-yellow-500 text-outline">a</span>
-          <span className="text-green-500 text-outline">w</span>
-          <span className="text-blue-500 text-outline">S</span>
-          <span className="text-indigo-500 text-outline">c</span>
-          <span className="text-purple-500 text-outline">r</span>
-          <span className="text-pink-500 text-outline">i</span>
-          <span className="text-teal-500 text-outline">b</span>
-          <span className="text-lime-500 text-outline">e</span>
-          <span className="text-rose-500 text-outline">.</span>
-          <span className="text-amber-500 text-outline">i</span>
-          <span className="text-cyan-500 text-outline">o</span>
+        <h1 className="font-Mario font-bold animate-breathing text-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl">
+          {/* Centered "Draw" text on all screen sizes */}
+          <div className="text-center">
+            <span className="text-red-500 text-outline">D</span>
+            <span className="text-orange-500 text-outline">r</span>
+            <span className="text-yellow-500 text-outline">a</span>
+            <span className="text-green-500 text-outline">w</span>
+          </div>
+
+          {/* "Scribe.io" on next line for small screens, inline for larger screens */}
+          <div className="block sm:inline sm:ml-2 text-center">
+            <span className="text-blue-500 text-outline">S</span>
+            <span className="text-indigo-500 text-outline">c</span>
+            <span className="text-purple-500 text-outline">r</span>
+            <span className="text-pink-500 text-outline">i</span>
+            <span className="text-teal-500 text-outline">b</span>
+            <span className="text-lime-500 text-outline">e</span>
+            <span className="text-rose-500 text-outline">.</span>
+            <span className="text-amber-500 text-outline">i</span>
+            <span className="text-cyan-500 text-outline">o</span>
+          </div>
         </h1>
 
         <button
           onClick={() => navigate('/play')}
           className="mt-6 sm:mt-8 px-4 sm:px-6 py-2 text-base sm:text-lg md:text-xl font-Mario border border-white text-white bg-transparent font-bold rounded-xl hover:bg-pink-600 transition-all duration-100 delay-15 shadow-sm shadow-white"
         >
-          <PlayArrowIcon sx={{ fontSize: { xs: 25, sm: 30 } }} />
+          <PlayArrowIcon sx={{ fontSize: { xs: 20, sm: 30 } }} />
         </button>
       </div>
     </div>

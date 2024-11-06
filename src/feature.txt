@@ -1,0 +1,4 @@
+1. Add sounds
+2. Reveal words
+3. Dynamic words everytime, guessing wale
+4. fill color feature in shapes
