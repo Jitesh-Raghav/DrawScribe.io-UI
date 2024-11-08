@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAudio } from '../AudioContext';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -7,7 +7,6 @@ const Landing = () => {
   const [audioRequested, setAudioRequested] = useState(false);
   const [userInput, setUserInput] = useState('');
   const [ready, setReady] = useState(false);
-
   const navigate = useNavigate();
   const { startAudio } = useAudio();
 
@@ -15,7 +14,9 @@ const Landing = () => {
     setUserInput(e.target.value);
   };
 
+
   const clickSound = new Audio('/click.mp3');
+
   const handleStartClick = () => {
     if (userInput.toLowerCase() === 'ready') {
       clickSound.play();
@@ -25,6 +26,8 @@ const Landing = () => {
       alert("Please enter 'Ready' to proceed.");
     }
   };
+
+ 
 
   const handlePlayButtonClick = () => {
     // Start audio and navigate to the game page
@@ -91,10 +94,10 @@ const Landing = () => {
               </h1>
 
               
-              <button className='mt-8 text-2xl text-gray-200 font-Mario hover:bg-pink-500 px-4 py-2 space-y-2 rounded-xl' onClick={()=>{navigate('/play'); clickSound.play();}}>New Game</button>
-              <button className='text-2xl text-gray-200 font-Mario hover:bg-pink-500 px-4 py-2 space-y-2 rounded-xl' onClick={()=>{navigate('/play'); clickSound.play();}}>Continue</button>
-              <button className='text-2xl text-gray-200 font-Mario hover:bg-pink-500 px-4 py-2 space-y-2 rounded-xl' onClick={()=>{navigate('/create'); clickSound.play();}}>Settings</button>
-              <button className='text-2xl text-gray-200 font-Mario hover:bg-pink-500 px-4 py-2 space-y-2 rounded-xl' onClick={handleRefresh}>Exit</button>
+              <button className='mt-8 text-2xl text-gray-200 font-Mario hover:bg-pink-500 hover:bg-opacity-65 px-4 py-2 space-y-2 rounded-xl transition duration-100' onClick={()=>{navigate('/play'); clickSound.play();}}>New Game</button>
+              <button className='text-2xl text-gray-200 font-Mario hover:bg-pink-500 hover:bg-opacity-65 px-4 py-2 space-y-2 rounded-xl transition duration-100' onClick={()=>{navigate('/play'); clickSound.play();}}>Continue</button>
+              <button className='text-2xl text-gray-200 font-Mario hover:bg-pink-500 hover:bg-opacity-65 px-4 py-2 space-y-2 rounded-xl transition duration-100' onClick={()=>{navigate('/create'); clickSound.play();}}>Settings</button>
+              <button className='text-2xl text-gray-200 font-Mario hover:bg-pink-500 hover:bg-opacity-65 px-4 py-2 space-y-2 rounded-xl transition duration-100' onClick={handleRefresh}>Exit</button>
 
             <button
               onClick={handlePlayButtonClick}
