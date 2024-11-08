@@ -20,6 +20,8 @@ const CreateRoom = () => {
     }
   };
 
+  const clickSound = new Audio('/click.mp3');
+
   const handleRemoveCustomWord = (index) => {
     setCustomWords(customWords.filter((_, i) => i !== index));
   };
@@ -35,11 +37,13 @@ const CreateRoom = () => {
       numHints,
       customWords,
     };
+    clickSound.play();
     navigate('/game');
     console.log('Game settings:', roomSettings);
   };
 
   const handleInvite = () => {
+    clickSound.play();
     alert('Invite link copied to clipboard!');
   };
 

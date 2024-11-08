@@ -278,6 +278,7 @@ const Game = () => {
     ];
 
     const clickSound = new Audio('/won.mp3');
+    const newsound = new Audio('/click.mp3');
     // Timer interval to countdown and reveal letters
     useEffect(() => {
         if (gameOver) return;
@@ -373,7 +374,7 @@ const Game = () => {
         <div className="bg-cover bg-center bg-no-repeat h-screen w-full flex flex-col justify-center items-center" style={{ backgroundImage: `url('/bg.png')` }}>
             <div className="flex flex-col w-[85%] mx-8"> {/* Added mx-8 for margin */}
                 <div className="flex items-center justify-between mb-1 bg-gray-700 text-white p-4">
-                    <h1 className="text-4xl font-bold font-Mario text-yellow-300">
+                    <h1 className="text-4xl font-bold font-Mario text-yellow-300 cursor-pointer" onClick={()=>{navigate('/'); newsound.play();}}>
                         <span className="text-red-500 text-outline">D</span>
                         <span className="text-orange-500 text-outline">r</span>
                         <span className="text-yellow-500 text-outline">a</span>

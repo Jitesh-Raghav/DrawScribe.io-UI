@@ -34,6 +34,11 @@ const Landing = () => {
     navigate('/play');
   };
 
+  const handleRefresh = () => {
+    clickSound.play();
+    navigate(0); 
+  };
+
   return (
     <>
       {!ready ? (
@@ -43,7 +48,7 @@ const Landing = () => {
           <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('/image.gif')` }}/>
           <div className="absolute inset-0 bg-black opacity-80"></div>
           <div className="relative text-center z-10">
-            <h1 className="text-white text-4xl mb-4 font-Mario">Enter "Ready" to start:</h1>
+            <h1 className="text-white text-4xl mb-4 font-Mario">Enter "Ready" to start</h1>
             <input
               type="text"
               value={userInput}
@@ -53,7 +58,7 @@ const Landing = () => {
               className="px-4 py-2 text-xl rounded placeholder:font-Mario placeholder:font-thin placeholder:text-sm"
             />
             <div>
-              <button onClick={handleStartClick} className="mt-4 px-6 py-2 text-white bg-green-500 rounded-lg font-Mario">
+              <button onClick={handleStartClick} className="mt-4 px-6 py-2 text-white bg-green-500 rounded-lg font-Mario hover:border hover:border-white">
                 Enter
               </button>
             </div>
@@ -69,14 +74,11 @@ const Landing = () => {
             className="w-full flex flex-col justify-center items-center px-4 md:px-8"
             style={{ background: 'linear-gradient(to bottom, transparent, black)', opacity: 1 }}
           >
-            <h1 className="font-Mario font-bold animate-breathing text-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl">
-              <div className="text-center">
+              <h1 className="font-Mario font-bold animate-breathing text-center text-4xl sm:text-7xl md:text-8xl lg:text-9xl flex justify-center flex-wrap gap-1">
                 <span className="text-red-500 text-outline">D</span>
                 <span className="text-orange-500 text-outline">r</span>
                 <span className="text-yellow-500 text-outline">a</span>
                 <span className="text-green-500 text-outline">w</span>
-              </div>
-              <div className="block sm:inline sm:ml-2 text-center">
                 <span className="text-blue-500 text-outline">S</span>
                 <span className="text-indigo-500 text-outline">c</span>
                 <span className="text-purple-500 text-outline">r</span>
@@ -86,8 +88,13 @@ const Landing = () => {
                 <span className="text-rose-500 text-outline">.</span>
                 <span className="text-amber-500 text-outline">i</span>
                 <span className="text-cyan-500 text-outline">o</span>
-              </div>
-            </h1>
+              </h1>
+
+              
+              <button className='mt-8 text-2xl text-gray-200 font-Mario hover:bg-pink-500 px-4 py-2 space-y-2 rounded-xl' onClick={()=>{navigate('/play'); clickSound.play();}}>New Game</button>
+              <button className='text-2xl text-gray-200 font-Mario hover:bg-pink-500 px-4 py-2 space-y-2 rounded-xl' onClick={()=>{navigate('/play'); clickSound.play();}}>Continue</button>
+              <button className='text-2xl text-gray-200 font-Mario hover:bg-pink-500 px-4 py-2 space-y-2 rounded-xl' onClick={()=>{navigate('/create'); clickSound.play();}}>Settings</button>
+              <button className='text-2xl text-gray-200 font-Mario hover:bg-pink-500 px-4 py-2 space-y-2 rounded-xl' onClick={handleRefresh}>Exit</button>
 
             <button
               onClick={handlePlayButtonClick}
