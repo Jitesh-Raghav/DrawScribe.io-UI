@@ -277,6 +277,7 @@ const Game = () => {
         '#006400', // Added requested colors
     ];
 
+    const clickSound = new Audio('/won.mp3');
     // Timer interval to countdown and reveal letters
     useEffect(() => {
         if (gameOver) return;
@@ -350,6 +351,7 @@ const Game = () => {
         
         if (newMessage.correct) {
             setRevealedWord(targetWord); 
+            clickSound.play();
             setAlert('You won!'); 
             setGameOver(true); 
             setTimeout(() => setAlert(''), 3000); 
