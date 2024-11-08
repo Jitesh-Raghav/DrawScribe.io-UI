@@ -15,8 +15,10 @@ const Landing = () => {
     setUserInput(e.target.value);
   };
 
+  const clickSound = new Audio('/click.mp3');
   const handleStartClick = () => {
     if (userInput.toLowerCase() === 'ready') {
+      clickSound.play();
       setReady(true);
       startAudio(); // Start the audio after user confirms readiness
     } else {
@@ -26,6 +28,7 @@ const Landing = () => {
 
   const handlePlayButtonClick = () => {
     // Start audio and navigate to the game page
+    clickSound.play();
     startAudio();
     setAudioRequested(true);
     navigate('/play');

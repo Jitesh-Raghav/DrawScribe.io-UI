@@ -8,6 +8,7 @@ import { dylan } from '@dicebear/collection';
 const Play = () => {
   const navigate = useNavigate();
 
+  const clickSound = new Audio('/click.mp3');
   const dylanSeeds = [
     'hero1',
     'hero2',
@@ -44,14 +45,17 @@ const Play = () => {
   }, [currentIndex]);
 
   const handlePrevAvatar = () => {
+    clickSound.play();
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? dylanSeeds.length - 1 : prevIndex - 1));
   };
 
   const handleNextAvatar = () => {
+    clickSound.play();
     setCurrentIndex((prevIndex) => (prevIndex ===dylanSeeds.length - 1 ? 0 : prevIndex + 1));
   };
 
   const handleSubmit = (event) => {
+   
     event.preventDefault();
     const formData = {
       playerName,
@@ -127,13 +131,17 @@ const Play = () => {
           {/* Start and Private Game Buttons */}
           <button
             type="submit"
+            onClick={()=>{clickSound.play();}}
             className="w-full py-2 md:py-3 mb-4 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition duration-200 text-sm md:text-base"
           >
             Play!
           </button>
           <button
             type="button"
-            onClick={() => navigate('/create')}
+            onClick={() => {
+                navigate('/create')
+                clickSound.play();
+            }}
             className="w-full py-2 md:py-3 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition duration-200 text-sm md:text-base"
           >
             Create Private Room
