@@ -5,13 +5,15 @@ import Play from "./Components/Play";
 import Game from "./Components/Game";
 import End from "./Components/End";
 import Create from "./Components/CreateRoom";
+import { AudioProvider} from './AudioContext';
+
 
 export default function App() {
   const location = useLocation(); // Capture location for route animation
 
   return (
   
-     
+     <AudioProvider>
         <Routes location={location}>
           <Route path="/" element={<Landing />} />
           <Route path="/play" element={<Play />} />
@@ -19,6 +21,6 @@ export default function App() {
           <Route path="/end" element={<End />} />
           <Route path="/create" element={<Create />} />
         </Routes>
-     
+        </AudioProvider>
   );
 }

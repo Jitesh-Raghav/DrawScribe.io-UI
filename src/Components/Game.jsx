@@ -248,6 +248,7 @@ import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import { FaPen, FaEraser } from 'react-icons/fa'; 
 import AlarmIcon from '@mui/icons-material/Alarm';
 import DrawIcon from '@mui/icons-material/Draw';
+import { useAudio } from '../AudioContext';
 
 const targetWord = "APPLE"; 
 
@@ -357,6 +358,14 @@ const Game = () => {
         setChatMessages([...chatMessages, newMessage]); 
         setGuess('');
     };
+
+    // const { stopAudio } = useAudio();
+
+    // useEffect(() => {
+    //   // Stop the audio when Game loads
+    //   stopAudio();
+    // }, [stopAudio]);
+  
 
     return (
         <div className="bg-cover bg-center bg-no-repeat h-screen w-full flex flex-col justify-center items-center" style={{ backgroundImage: `url('/bg.png')` }}>
