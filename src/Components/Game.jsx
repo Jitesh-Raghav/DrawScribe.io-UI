@@ -249,6 +249,8 @@ import { FaPen, FaEraser } from 'react-icons/fa';
 import AlarmIcon from '@mui/icons-material/Alarm';
 import DrawIcon from '@mui/icons-material/Draw';
 import { useAudio } from '../AudioContext';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const targetWord = "APPLE"; 
 
@@ -393,13 +395,14 @@ const Game = () => {
                     <span className="text-lg font-semibold">{revealedWord} {targetWord.length}</span>
                     <div className="flex items-center gap-4">
                         <span className="text-lg font-Mario px-3">Time Left: {timeLeft}s <AlarmIcon/></span>
-                        <SettingsSuggestIcon className="cursor-pointer text-2xl" />
+                        <SettingsSuggestIcon className="cursor-pointer text-2xl" onClick={()=>navigate('/create')}/>
+                        <ExitToAppIcon className='cursor-pointer text-2xl' onClick={()=>navigate('/')}/>
                     </div>
                 </div>
 
                 <div className="flex flex-grow gap-1">
                     <div className="w-1/4 bg-gray-300 p-4 shadow-lg">
-                        <h2 className="text-xl font-bold mb-8 font-Mario border-b border-gray-400">Leaderboard</h2>
+                        <h2 className="text-xl font-bold mb-8 font-Mario border-b border-gray-400">Leaderboard<EmojiEventsIcon className="text-yellow-600"/></h2>
                         <p>Player 1: 10 points</p>
                         <p>Player 2: 5 points</p>
                         <p>Player 3: 2 points</p>
