@@ -9,6 +9,8 @@ const Play = () => {
   const navigate = useNavigate();
 
   const clickSound = new Audio('/click.mp3');
+  const playSound = new Audio('/start.mp3');
+
   const dylanSeeds = [
     'hero1',
     'hero2',
@@ -131,7 +133,7 @@ const Play = () => {
           {/* Start and Private Game Buttons */}
           <button
             type="submit"
-            onClick={()=>{clickSound.play();}}
+            onClick={()=>{playSound.play();}}
             className="w-full py-2 md:py-3 mb-4 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition duration-200 text-sm md:text-base"
           >
             Play!

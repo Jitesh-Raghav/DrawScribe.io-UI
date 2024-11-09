@@ -21,6 +21,7 @@ const CreateRoom = () => {
   };
 
   const clickSound = new Audio('/click.mp3');
+  const playSound = new Audio('/start.mp3');
 
   const handleRemoveCustomWord = (index) => {
     setCustomWords(customWords.filter((_, i) => i !== index));
@@ -37,7 +38,7 @@ const CreateRoom = () => {
       numHints,
       customWords,
     };
-    clickSound.play();
+    playSound.play();
     navigate('/game');
     console.log('Game settings:', roomSettings);
   };

@@ -395,8 +395,24 @@ const Game = () => {
                     <span className="text-lg font-semibold">{revealedWord} {targetWord.length}</span>
                     <div className="flex items-center gap-4">
                         <span className="text-lg font-Mario px-3">Time Left: {timeLeft}s <AlarmIcon/></span>
-                        <SettingsSuggestIcon className="cursor-pointer text-2xl" onClick={()=>navigate('/create')}/>
-                        <ExitToAppIcon className='cursor-pointer text-2xl' onClick={()=>navigate('/')}/>
+                        <div className="relative flex gap-4">
+                            {/* Settings Icon with Tooltip */}
+                            <div className="relative group">
+                                <SettingsSuggestIcon className="cursor-pointer text-2xl" onClick={() => navigate('/create')} />
+                                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-2 py-1 rounded bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    Settings
+                                </div>
+                            </div>
+
+                            {/* Exit Icon with Tooltip */}
+                            <div className="relative group">
+                                <ExitToAppIcon className="cursor-pointer text-2xl" onClick={() => navigate('/')} />
+                                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-2 py-1 rounded bg-black text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    Exit
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
