@@ -106,7 +106,7 @@ const Play = () => {
 
           {/* Player Avatar */}
           <div className="mb-6 flex flex-col items-center">
-            <label className="block text-md md:text-lg font-semibold mb-2 text-gray-100">Player Avatar</label>
+            <label className="block text-md md:text-lg font-semibold mb-2 text-gray-100">Select Avatar</label>
             <div className="flex items-center">
               <button
                 type="button"
